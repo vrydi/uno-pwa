@@ -126,11 +126,11 @@ function PlayerScreen() {
     return <>
         <div>
             <h1 className={'text-white text-center text-capitalize'}>{currentPlayer.name}</h1>
-            <Row>
+            <div className="d-flex" style={{overflowX: 'scroll'}}>
                 {currentPlayer.cards.map((card, j) => <UnoCard card={card} key={j}
                                                                className={'handCard user-select-none'}
                                                                onClickFunction={() => playCard(card)}/>)}
-            </Row>
+            </div>
         </div>
 
     </>
