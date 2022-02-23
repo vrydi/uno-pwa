@@ -3,6 +3,7 @@ import {useGameContext} from "../contexts/GameContext";
 import {UnoCard} from "./UnoCard";
 import {useEffect} from "react";
 import {usePlayerContext} from "../contexts/PlayersContext";
+import useWindowDimensions from "../contexts/WindowContext";
 
 export function GameField() {
     const {gameStart, turn, currentPlayer, nextTurnScreen, yourTurnScreen, gameStarted, message} = useGameContext()
@@ -30,29 +31,58 @@ export function GameField() {
 
 function DeckSpace() {
     const {topCard, currentDeck, playedDeck, drawCard, turn} = useGameContext()
-    const {players} = usePlayerContext()
+    const { players } = usePlayerContext()
+    const {width} = useWindowDimensions()
+    
+    console.log('---- dimensions', width)
 
-    return <div>
-        <div className={'d-flex align-content-center py-5'}>
-            <ColourModal/>
-            <Col className={'my-auto'}>
-                <p className={'text-white text-center'}>Cards left in deck</p>
-                <UnoCard card={{cardColour: 'black', cardText: currentDeck.length > 0 ? currentDeck.length : '#'}}
-                         className={'deckCard user-select-none'} onClickFunction={() => drawCard(turn, 1, false, true)}/>
-            </Col>
-            <Col className={'my-auto'}>
-                <p className={'text-white text-center'}>Current card</p>
-                <UnoCard card={topCard} className={'user-select-none'}/>
-            </Col>
-            <Col className={'my-auto'}>
-                <p className={'text-white text-center'}>Cards played</p>
-                <UnoCard card={{cardColour: 'black', cardText: playedDeck.length > 0 ? playedDeck.length : '#'}}
-                         className={'user-select-none'}/>
-            </Col>
+    if (width < 438) {
+        return <div>
+                <ColourModal />
+                <Row>
+                    <Col className={'my-auto'}>
+                        <p className={'text-white text-center'}>Cards left in deck</p>
+                        <UnoCard card={{ cardColour: 'black', cardText: currentDeck.length > 0 ? currentDeck.length : '#' }}
+                            className={'deckCard user-select-none'} onClickFunction={() => drawCard(turn, 1, false, true)} />
+                    </Col>
+                    <Col className={'my-auto'}>
+                        <p className={'text-white text-center'}>Cards played</p>
+                        <UnoCard card={{ cardColour: 'black', cardText: playedDeck.length > 0 ? playedDeck.length : '#' }}
+                            className={'user-select-none'} />
+                    </Col>
+                    <Col className={'my-auto'}>
+                        <p className={'text-white text-center'}>Current card</p>
+                        <UnoCard card={topCard} className={'user-select-none'} />
+                    </Col>
+                </Row>
+            <Container>{players.map((player, i) => <p key={i}
+                className={'text-white justify-content-between text-center'}>{player.calledUno ? `${player.name} called uno` : ''}</p>)}
+            </Container>
+            </div>
+    } else {
+        return <div>
+            <div className={'d-flex align-content-center'}>
+                <ColourModal />
+                <Col className={'my-auto'}>
+                    <p className={'text-white text-center'}>Cards left in deck</p>
+                    <UnoCard card={{ cardColour: 'black', cardText: currentDeck.length > 0 ? currentDeck.length : '#' }}
+                        className={'deckCard user-select-none'} onClickFunction={() => drawCard(turn, 1, false, true)} />
+                </Col>
+                <Col className={'my-auto'}>
+                    <p className={'text-white text-center'}>Current card</p>
+                    <UnoCard card={topCard} className={'user-select-none'} />
+                </Col>
+                <Col className={'my-auto'}>
+                    <p className={'text-white text-center'}>Cards played</p>
+                    <UnoCard card={{ cardColour: 'black', cardText: playedDeck.length > 0 ? playedDeck.length : '#' }}
+                        className={'user-select-none'} />
+                </Col>
+            </div>
+            <Container>{players.map((player, i) => <p key={i}
+                className={'text-white justify-content-between text-center'}>{player.calledUno ? `${player.name} called uno` : ''}</p>)}
+            </Container>
         </div>
-        <Container>{players.map((player, i) => <p key={i}
-                                                  className={'text-white justify-content-between text-center'}>{player.calledUno ? `${player.name} called uno` : ''}</p>)}</Container>
-    </div>
+    }
 }
 
 function ColourModal() {

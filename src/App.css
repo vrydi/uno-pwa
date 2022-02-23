@@ -9,16 +9,6 @@
   --uno-card-text-border: 1px 1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000, 0 1px 0 #000, 0 -1px 0 #000, -1px 0 0 #000, 1px 0 0 #000, 2px 2px 0 #000, -2px 2px 0 #000, 2px -2px 0 #000, -2px -2px 0 #000, 0 2px 0 #000, 0 -2px 0 #000, -2px 0 0 #000, 2px 0 0 #000, 1px 2px 0 #000, -1px 2px 0 #000, 1px -2px 0 #000, -1px -2px 0 #000, 2px 1px 0 #000, -2px 1px 0 #000, 2px -1px 0 #000, -2px -1px 0 #000;
 }
 
-.unoCard {
-  width: 200px;
-  height: 250px;
-  border-radius: 25px !important;
-  border: var(--uno-card-border-colour) var(--uno-card-border-width) solid !important;
-  /*padding: 0 var(--uno-card-border-width);*/
-  display: flex;
-  justify-content: space-between;
-}
-
 .red {
   background-color: var(--uno-card-red) !important;
 }
@@ -44,7 +34,7 @@
 .unoText {
   color: white;
   text-shadow: var(--uno-card-text-border);
-  font-size: 1.8em !important;
+  font-size: 1em !important;
 }
 
 .gridContainerUnoCard {
@@ -81,7 +71,7 @@
 .cardImage div {
   /*align-self: center;*/
   /*margin: auto;*/
-  font-size: 2em !important;
+  font-size: 1em !important;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -135,4 +125,31 @@ legend {
 
 fieldset {
   border-radius: 25px !important;
+}
+
+.unoCard {
+  width: 100px;
+  height: 125px;
+  border-radius: 25px !important;
+  border: var(--uno-card-border-colour) calc(var(--uno-card-border-width) /2) solid !important;
+  /*padding: 0 var(--uno-card-border-width);*/
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (min-width: 758px) {
+  .unoCard {
+    width: 200px;
+    height: 250px;
+    border-width: var(--uno-card-border-width);
+  }
+
+  .cardImage i,
+  .cardImage div {
+    font-size: 2em !important;
+  }
+
+  .unoText {
+    font-size: 1.8em !important;
+  }
 }
