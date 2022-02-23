@@ -1,38 +1,138 @@
-.App {
-  text-align: center;
+:root {
+  --uno-card-red: #c40c00;
+  --uno-card-yellow: #e7d004;
+  --uno-card-blue: #0849a3;
+  --uno-card-green: #328a10;
+  --uno-card-black: #252525;
+  --uno-card-border-colour: #e2e2e2;
+  --uno-card-border-width: 10px;
+  --uno-card-text-border: 1px 1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000, 0 1px 0 #000, 0 -1px 0 #000, -1px 0 0 #000, 1px 0 0 #000, 2px 2px 0 #000, -2px 2px 0 #000, 2px -2px 0 #000, -2px -2px 0 #000, 0 2px 0 #000, 0 -2px 0 #000, -2px 0 0 #000, 2px 0 0 #000, 1px 2px 0 #000, -1px 2px 0 #000, 1px -2px 0 #000, -1px -2px 0 #000, 2px 1px 0 #000, -2px 1px 0 #000, 2px -1px 0 #000, -2px -1px 0 #000;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.unoCard {
+  width: 200px;
+  height: 250px;
+  border-radius: 25px !important;
+  border: var(--uno-card-border-colour) var(--uno-card-border-width) solid !important;
+  /*padding: 0 var(--uno-card-border-width);*/
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: space-between;
+}
+
+.red {
+  background-color: var(--uno-card-red) !important;
+}
+
+.yellow {
+  background-color: var(--uno-card-yellow) !important;
+}
+
+.blue {
+  background-color: var(--uno-card-blue) !important;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.green {
+  background-color: var(--uno-card-green) !important;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.black {
+  background-color: var(--uno-card-black) !important;
+  color: white;
+}
+
+.unoText {
+  color: white;
+  text-shadow: var(--uno-card-text-border);
+  font-size: 1.8em !important;
+}
+
+.gridContainerUnoCard {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: 20% auto 20%;
+  grid-template-rows: 10% 10% auto 10% 10%;
+  text-align: center;
+}
+
+.secondItem {
+  grid-row-start: 2;
+  grid-row-end: 5;
+  grid-column: 2;
+}
+
+.thirdItem {
+  grid-row: 4;
+  grid-column: 3;
+}
+
+.cardImage {
+  border-radius: 69% 31% 69% 31% / 69% 31% 69% 31%;
+  border: white 5px solid;
+  display: grid;
+  grid-template-areas:
+    "red blue"
+    "yellow green";
+  overflow: hidden;
+}
+
+.cardImage i,
+.cardImage div {
+  /*align-self: center;*/
+  /*margin: auto;*/
+  font-size: 2em !important;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.gridRed {
+  background-color: var(--uno-card-red);
+  grid-area: red;
+}
+
+.gridBlue {
+  background-color: var(--uno-card-blue);
+  grid-area: blue;
+}
+
+.gridYellow {
+  background-color: var(--uno-card-yellow);
+  grid-area: yellow;
+}
+
+.gridGreen {
+  background-color: var(--uno-card-green);
+  grid-area: green;
+}
+
+.handCard > div:hover {
+  transition: all 500ms ease !important;
+  transform: translateY(-100px);
+  cursor: grab;
+}
+
+.handCard > div {
+  transition: all 500ms ease !important;
+}
+
+.deckCard > div {
+  cursor: grab;
+}
+
+.colourPicker:hover {
+  filter: brightness(150%);
+  cursor: grab;
+}
+
+legend {
+  float: none !important;
+  width: max-content !important;
+}
+
+fieldset {
+  border-radius: 25px !important;
 }
