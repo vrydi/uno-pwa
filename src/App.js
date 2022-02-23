@@ -14,7 +14,7 @@ function App() {
       <DeckProvider>
         <PlayerProvider>
           <GameProvider>
-            <div className="App bg-dark" style={{ minHeight: '100vh' }}>
+            <div className="App bg-dark" style={{ minHeight: '100vh', overflowY: 'hidden' }}>
               <Switch>
                 <Route exact path={'/'}>
                   <NavbarBase />

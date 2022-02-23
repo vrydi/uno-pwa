@@ -137,7 +137,7 @@ function YourTurnScreen() {
             <h3 className={'text-center text-white mb-3 text-uppercase'}>Forgot to say uno?</h3>
             <Container>
                 {unoPlayers.map((player, i) => <Button key={i} className={'d-block mx-auto'} style={{width: '250px'}} onClick={()=>reportUno(player.turnID)}>{player.name}</Button>)}
-            </Container>}
+            </Container>
         </>}
     </Container>
 }

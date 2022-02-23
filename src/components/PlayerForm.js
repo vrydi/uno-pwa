@@ -25,10 +25,10 @@ export function PlayerForm () {
         console.log(players)
     }
 
-    return <Container style={{width: '500px'}}>
-        <fieldset className={'border px-5 py-3'}>
+    return <Container style={{maxWidth: '500px'}}>
+        <fieldset className={'border px-3 px-sm-5 py-3'}>
             <legend>
-                <h1 className={'text-white mx-3'}>Create new player</h1>
+                <h1 className={'text-white mx-1 mx-sm-3'}>Create new player</h1>
             </legend>
             <ErrorToast/>
             <Form onSubmit={()=>playerSubmit()}>
@@ -41,7 +41,7 @@ export function PlayerForm () {
                                   required/>
                 </FloatingLabel>
                 <div className={'text-center'}>
-                    <Button variant={'outline-success'} onMouseOut={(e)=>toggleVariant(e.currentTarget)} onMouseOver={(e)=>toggleVariant(e.currentTarget)} className={'w-50 p-3 border-success border-3'} type={'submit'}>Add player</Button>
+                    <Button variant={'outline-success'} onMouseOut={(e)=>toggleVariant(e.currentTarget)} onMouseOver={(e)=>toggleVariant(e.currentTarget)} className={'w-75 border-success border-3'} type={'submit'} style={{maxWidth: '250px'}}>Add player</Button>
                 </div>
             </Form>
         </fieldset>

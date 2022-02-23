@@ -9,7 +9,7 @@ export function PlayerOverview() {
     return <>
         {players.length > 0 && <Container className={'my-5'}>
             <h1 className={'text-white'}>Players</h1>
-            <Row xs={4}>
+            <Row>
                 {players.map((player, i)=> <PlayerCard key={i} player={player}/>)}
             </Row>
         </Container>}
@@ -28,7 +28,7 @@ function PlayerCard(props) {
         setRemoving(false)
     }
 
-    return <Col>
+    return <Col xs={12} md={6} lg='4' className='my-3'>
         <Card className={'p-3'}>
             <h5 className={'text-center text-capitalize'}>{player.name}</h5>
             <hr/>
