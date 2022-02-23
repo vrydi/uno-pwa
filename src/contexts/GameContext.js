@@ -88,6 +88,7 @@ export function GameProvider(props) {
 
     const gameStart = useCallback(() => {
         if (players.length >= 2) {
+            setMessage('')
             const cardsArray = shuffleDeck()
 
             dealing(cardsArray)

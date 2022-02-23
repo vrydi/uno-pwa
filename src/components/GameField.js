@@ -39,7 +39,7 @@ function DeckSpace() {
     if (width < 438) {
         return <div>
                 <ColourModal />
-                <Row>
+                <Row className="pt-5">
                     <Col className={'my-auto'}>
                         <p className={'text-white text-center'}>Cards left in deck</p>
                         <UnoCard card={{ cardColour: 'black', cardText: currentDeck.length > 0 ? currentDeck.length : '#' }}
@@ -61,7 +61,7 @@ function DeckSpace() {
             </div>
     } else {
         return <div>
-            <div className={'d-flex align-content-center'}>
+            <div className={'d-flex align-content-center pt-5'}>
                 <ColourModal />
                 <Col className={'my-auto'}>
                     <p className={'text-white text-center'}>Cards left in deck</p>
