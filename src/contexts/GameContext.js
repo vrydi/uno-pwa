@@ -86,13 +86,17 @@ export function GameProvider(props) {
         return newDeck
     }, [])
 
-    const gameStart = useCallback(()=>{
-        const cardsArray = shuffleDeck()
+    const gameStart = useCallback(() => {
+        if (players.length >= 2) {
+            const cardsArray = shuffleDeck()
 
-        dealing(cardsArray)
-        setCurrentPlayer(players[turn])
-        setGameStarted(true)
-
+            dealing(cardsArray)
+            setCurrentPlayer(players[turn])
+            setGameStarted(true)
+        }
+        else {
+            setMessage('Not enough players')
+        }
     }, [dealing, players, shuffleDeck, turn])
 
     const restartGame = useCallback(()=>{

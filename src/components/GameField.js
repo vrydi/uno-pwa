@@ -5,7 +5,7 @@ import {useEffect} from "react";
 import {usePlayerContext} from "../contexts/PlayersContext";
 
 export function GameField() {
-    const {gameStart, turn, currentPlayer, nextTurnScreen, yourTurnScreen, gameStarted} = useGameContext()
+    const {gameStart, turn, currentPlayer, nextTurnScreen, yourTurnScreen, gameStarted, message} = useGameContext()
     const {players} = usePlayerContext()
 
     useEffect(() => {
@@ -23,6 +23,7 @@ export function GameField() {
             {currentPlayer && <>
                 {nextTurnScreen.state ? <TurnScreen/> : yourTurnScreen ? <YourTurnScreen/> : <PlayerScreen/>}
             </>}
+            <p className={'text-danger text-center'}>{message}</p>
         </div>
     </div>
 }
@@ -90,12 +91,11 @@ function ColourModal() {
 }
 
 function PlayerScreen() {
-    const {currentPlayer, message, playCard} = useGameContext()
+    const {currentPlayer, playCard} = useGameContext()
 
     return <>
         <div>
             <h1 className={'text-white text-center text-capitalize'}>{currentPlayer.name}</h1>
-            <p className={'text-danger text-center'}>{message}</p>
             <Row>
                 {currentPlayer.cards.map((card, j) => <UnoCard card={card} key={j}
                                                                className={'handCard user-select-none'}
