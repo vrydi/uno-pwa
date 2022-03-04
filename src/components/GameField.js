@@ -271,7 +271,7 @@ function YourTurnScreen() {
   const { currentPlayer, setYourTurnScreen, reportUno } = useGameContext();
   const { players } = usePlayerContext();
   const unoPlayers = players.filter((player) => player.cards.length === 1);
-  sendNotification(`It's ${currentPlayer}'s their turn`);
+  sendNotification(`It's ${currentPlayer.name}'s their turn`);
 
   return (
     <Container>
