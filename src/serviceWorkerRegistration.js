@@ -152,3 +152,12 @@ export async function askForNotificationPermission() {
     console.log("-- notifications not available");
   }
 }
+
+export async function sendNotification(message) {
+  navigator.serviceWorker.ready.then((registration) => {
+    registration.active?.postMessage({
+      type: "SEND_NOTIFICATION",
+      payLoad: message,
+    });
+  });
+}
