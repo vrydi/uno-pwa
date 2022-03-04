@@ -4,6 +4,7 @@ import { UnoCard } from "./UnoCard";
 import { useEffect } from "react";
 import { usePlayerContext } from "../contexts/PlayersContext";
 import useWindowDimensions from "../contexts/WindowContext";
+import { sendNotification } from "../serviceWorkerRegistration";
 
 export function GameField() {
   const {
@@ -270,6 +271,7 @@ function YourTurnScreen() {
   const { currentPlayer, setYourTurnScreen, reportUno } = useGameContext();
   const { players } = usePlayerContext();
   const unoPlayers = players.filter((player) => player.cards.length === 1);
+  sendNotification(`It's ${currentPlayer}'s their turn`);
 
   return (
     <Container>

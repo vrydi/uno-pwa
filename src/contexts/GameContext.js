@@ -6,6 +6,7 @@ import {
   useMemo,
   useState,
 } from "react";
+import { sendNotification } from "../serviceWorkerRegistration";
 import { useDeckContext } from "./DeckContext";
 import { usePlayerContext } from "./PlayersContext";
 
@@ -102,6 +103,7 @@ export function GameProvider(props) {
       dealing(cardsArray);
       setCurrentPlayer(players[turn]);
       setGameStarted(true);
+      sendNotification("Game has started");
     } else {
       setMessage("Not enough players");
     }
@@ -127,6 +129,7 @@ export function GameProvider(props) {
     players[winner.turnID] = winner;
     updatePlayers(players);
     setWinner(winner);
+    sendNotification(`${winner.name} has won the game!`);
   }, [players, updatePlayers]);
 
   const checkUno = useCallback((player) => {
@@ -344,7 +347,8 @@ export function GameProvider(props) {
     players[currentPlayer.turnID] = currentPlayer;
     updatePlayers(players);
     nextTurn();
-  }, [currentPlayer, nextTurn, players, updatePlayers]);
+    sendNotification(`${currentPlayer.name} has called UNO`);
+  }, [currentPlayer, nextTurn, players, updatePlayers, sendNotification]);
 
   const reportUno = useCallback(
     (playerID) => {
