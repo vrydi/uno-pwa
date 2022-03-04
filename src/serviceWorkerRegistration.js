@@ -154,10 +154,13 @@ export async function askForNotificationPermission() {
 }
 
 export async function sendNotification(message) {
-  navigator.serviceWorker.ready.then((registration) => {
-    registration.active?.postMessage({
-      type: "SEND_NOTIFICATION",
-      payLoad: message,
+  const permission = await Notification.requestPermission();
+  if (permission === "granted") {
+    navigator.serviceWorker.ready.then((registration) => {
+      registration.active?.postMessage({
+        type: "SEND_NOTIFICATION",
+        payLoad: message,
+      });
     });
-  });
+  }
 }
